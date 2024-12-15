@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- MSBuild parse this file twice somehow to determine <Link> item, so cannot use Condition on ProjectReference -->
+  <ItemGroup>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)libb.vcxproj" />
+  </ItemGroup>
+  <Import Project="$(MSBuildThisFileDirectory)exports.headers.props" />
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <PreprocessorDefinitions>
+        LIBB_IMPORTS;
+        %(PreprocessorDefinitions)
+      </PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+</Project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Trigger error if already imported -->
+  <Import Project="['$(LIBB_EXPORTS_HEADERS_Imported)']nonexist" Condition=" '$(LIBB_EXPORTS_HEADERS_Imported)' != '' " />
+  <PropertyGroup>
+    <LIBB_EXPORTS_HEADERS_Imported>true</LIBB_EXPORTS_HEADERS_Imported>
+  </PropertyGroup>
+
+  <Import Project="$(MyRootDir)liba\build\exports.headers.props" Condition=" '$(LIBA_EXPORTS_HEADERS_Imported)' == '' " />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>
+        $(MSBuildThisFileDirectory)..\inc;
+        %(AdditionalIncludeDirectories)
+      </AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+</Project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ProjectNameAlt>_static</ProjectNameAlt>
+    <OutSubDirNameAlt>$(ProjectNameAlt)</OutSubDirNameAlt>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_ProjectNameNoSuffix>$(MSBuildProjectName)</_ProjectNameNoSuffix>
+    <_ProjectNameNoSuffix>$(_ProjectNameNoSuffix.Substring(0, $([MSBuild]::Subtract($(_ProjectNameNoSuffix.Length), $(ProjectNameAlt.Length)))))</_ProjectNameNoSuffix>
+    <!-- Condition is always true -->
+    <!-- <_ProjectNameNoSuffix Condition="$(MSBuildProjectName.EndsWith($(ProjectNameAlt)))">$(_ProjectNameNoSuffix.Substring(0, $([MSBuild]::Subtract($(_ProjectNameNoSuffix.Length), $(ProjectNameAlt.Length)))))</_ProjectNameNoSuffix> -->
+  </PropertyGroup>
+  <Import Project="$(_ProjectNameNoSuffix).props" />
+</Project>

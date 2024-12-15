@@ -1,0 +1,40 @@
+<Project>
+
+  <!-- <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' " /> -->
+  <!-- <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' " /> -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' " />
+
+  <PropertyGroup>
+    <OutSubDirName Condition=" '$(OutSubDirName)' == '' And ('$(Platform)' == 'AnyCPU' Or '$(Platform)' == 'Win32') ">$(Configuration)</OutSubDirName>
+    <OutSubDirName Condition=" '$(OutSubDirName)' == '' ">$(Platform)_$(Configuration)</OutSubDirName>
+    <OutSubDirName Condition=" '$(OutSubDirNameAlt)' != '' ">$(OutSubDirName)$(OutSubDirNameAlt)</OutSubDirName>
+
+    <BaseOutputPath>bin\</BaseOutputPath>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
+    <OutputPath Condition=" '$(OutputPath)'=='' ">$(BaseOutputPath)$(OutSubDirName)\</OutputPath>
+    <IntermediateOutputPath Condition=" '$(IntermediateOutputPath)'=='' ">$(BaseIntermediateOutputPath)$(OutSubDirName)\</IntermediateOutputPath>
+
+    <O>$(IntermediateOutputPath)</O>
+    <IntDir>$(ProjectDir)$(IntermediateOutputPath)</IntDir>
+    <OutDir>$(ProjectDir)$(OutputPath)</OutDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CharacterSet Condition="'$(CharacterSet)' == ''">MultiByte</CharacterSet>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+
+    <!-- Language features -->
+    <ClCompile>
+      <ConformanceMode Condition=" '$(ConformanceMode)' == '' ">true</ConformanceMode>
+      <AdditionalOptions Condition=" '$(ConformanceMode)' == 'true' ">/Zc:externConstexpr %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <LanguageStandard Condition=" '$(LanguageStandard)' == '' ">stdcpp20</LanguageStandard>
+      <LanguageStandard_C Condition=" '$(LanguageStandard_C)' == '' ">stdc17</LanguageStandard_C>
+      <UseStandardPreprocessor Condition=" '$(UseStandardPreprocessor)' == '' ">true</UseStandardPreprocessor>
+    </ClCompile>
+
+  </ItemDefinitionGroup>
+
+</Project>

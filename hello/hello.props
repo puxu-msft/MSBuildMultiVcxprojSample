@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+
+  <PropertyGroup Label="Globals">
+    <UseStaticLink Condition="'$(UseStaticLink)'==''">false</UseStaticLink>
+
+    <ConfigurationType>Application</ConfigurationType>
+    <!-- About Use of MFC: Use Standard Windows Libraries in VS IDE - Project Properties - Advanced -->
+    <Keyword>Win32Proj</Keyword>
+
+    <CopyLocalProjectReference>true</CopyLocalProjectReference>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
+  <Import Project="$(MyRootDir)libb\build\exports.static.props" Condition=" '$(LIBB_EXPORTS_HEADERS_Imported)' == '' And '$(UseStaticLink)' == 'true' " />
+  <Import Project="$(MyRootDir)libb\build\exports.shared.props" Condition=" '$(LIBB_EXPORTS_HEADERS_Imported)' == '' And '$(UseStaticLink)' != 'true' " />
+
+  <ItemGroup>
+    <ClCompile Include="*.cpp" />
+  </ItemGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>
+        .;
+        %(AdditionalIncludeDirectories)
+      </AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

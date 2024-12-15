@@ -1,0 +1,17 @@
+# ide
+.vscode/
+.vs/
+*.proj.user
+*.noproj.user
+*.vcxproj.user
+*.csproj.user
+
+# builds
+bin/
+obj/
+objd/
+out/
+int/
+
+/local/
+/*.log

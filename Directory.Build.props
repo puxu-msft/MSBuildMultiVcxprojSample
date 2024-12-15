@@ -1,0 +1,19 @@
+<!-- see: https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=vs-2019 -->
+<Project>
+  <PropertyGroup>
+    <MyRootDir>$(MSBuildThisFileDirectory)</MyRootDir>
+    <ProjectDirRelDir>$(MSBuildProjectDirectory.Substring($(MyRootDir.Length)))</ProjectDirRelDir>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- v141 - VS 2017, compatible with VS 2015 -->
+    <!-- v142 - VS 2019, compatible with VS 2015 -->
+    <!-- v143 - VS 2022, compatible with VS 2015 -->
+    <PlatformToolset Condition=" '$(PlatformToolset)' == '' ">v143</PlatformToolset>
+  </PropertyGroup>
+
+  <Import Project="$(MSBuildThisFileDirectory)Directory.Build.cpp.props" Condition=" '$(MSBuildProjectExtension)' == '.vcxproj' " />
+
+  <!-- Stop MSBuild to find another Directory.Build.props in parent directories -->
+  <!-- <Import Project="$(MSBuildThisFileDirectory)..\Directory.Build.props" Condition="Exists('$(MSBuildThisFileDirectory)..\Directory.Build.props')" /> -->
+</Project>
